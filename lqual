@@ -1,0 +1,88 @@
+#!/usr/bin/env python3
+
+import argparse
+import os
+from PIL import Image
+
+
+def main():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("-m", "--multiplier",
+                        help="the number that is going to be \
+                        multiplied with the original resolution.",
+                        required=True,
+                        type=int)
+
+    parser.add_argument("-q", "--quality",
+                        help="the image's jpeg quality value.",
+                        required=True,
+                        type=int)
+
+    parser.add_argument("-l", "--low-res",
+                        help="use this if you don't want the image to be \
+                        resized back to its original size.",
+                        action="store_true")
+
+    parser.add_argument("input",
+                        help="input file.",
+                        type=str)
+
+    parser.add_argument("output",
+                        help="output file.",
+                        nargs="?",
+                        type=str)
+
+    args = parser.parse_args()
+
+    multiplier = args.multiplier
+    quality = args.quality
+    input = args.input
+    output = args.output
+
+    current_dir = os.getcwd()
+
+    input = input
+    img = Image.open(input)
+
+    size = img.size
+
+    width = int(size[0] / multiplier)
+    height = int(size[1] / multiplier)
+    final_size = (width, height)
+
+    original_width = int(size[0])
+    original_height = int(size[1])
+    original_size = (original_width, original_height)
+
+    def path_bar():
+        if os.name == "nt":
+            return "\\"
+        else:
+            return "/"
+    path_bar_str = path_bar()
+
+    # Saving the image with low quality, lowering the resolution
+    # and then resizing it back to its original resolution while
+    # keeping the quality low.
+    img = img.resize(final_size)
+    if args.output:  # Checking if output is specified.
+        img.save(output, "JPEG",
+                 quality=quality)
+        if not args.low_res:
+            img = Image.open(output)
+            img = img.resize(original_size)
+            img.save(output, "JPEG")
+    else:
+        # If output is not specified, save the file in
+        # current directory with the name "output.jpg".
+        dir = f"{current_dir}{path_bar_str}output.jpg"
+        img.save(dir, "JPEG",
+                 quality=quality)
+        if not args.low_res:
+            img = Image.open(dir)
+            img = img.resize(original_size)
+            img.save(dir, "JPEG")
+
+
+main()
