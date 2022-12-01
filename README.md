@@ -48,11 +48,11 @@ $ sudo cp lqual /usr/local/bin
 ```
 lqual [-h] -m MULTIPLIER -q QUALITY [-l] input [output]
 
--h, --help            show this help message and exit.
+-h, --help            show this help message and exit
 -m MULTIPLIER, --multiplier MULTIPLIER
-                      the number that is going to be multiplied with the original resolution (higher = lower resolution).
+                      the number that is going to be multiplied with the original resolution (higher = lower resolution)
 -q QUALITY, --quality QUALITY
-                      the image's jpeg quality value (lower = lower quality).
--l, --low-res         use this if you don't want the image to be resized back to its original size.
+                      the image's jpeg quality value (lower = lower quality)
+-l, --low-res         use this if you don't want the image to be resized back to its original size
 ```
 If `output` is not specified the image will be save in the current directory with the name `output.jpg`.
