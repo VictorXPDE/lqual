@@ -7,11 +7,31 @@ Lower a image's quality.
 
 <img src="https://user-images.githubusercontent.com/60672615/204931234-baa67acd-19ec-4b09-9187-488447c8ac37.png" width=10% height=10%> <img src="https://user-images.githubusercontent.com/60672615/204931317-492f34b7-e0b3-4dfe-9f71-f50ceee45f13.jpg" width=10% height=10%>
 
-#### Dependencies:
+### Dependencies:
 
 * [Pillow](https://pypi.org/project/Pillow/)
 
 ### Installation:
+### Windows
+
+Install [Python](https://www.python.org/downloads/windows/) (make sure you checked the box to add Python to PATH).
+
+Download the project's source code [here](https://github.com/VictorXPDE/lqual/archive/refs/heads/master.zip) and then unzip it.
+
+Open the extracted folder in explorer, press SHIFT + Right Click and then click "Open Powershell window here".
+
+In Powershell, enter this command:
+```
+python -m pip install pillow pyinstaller
+```
+to install Pillow and pyinstaller.
+Enter
+```
+pyinstaller lqual --onefile
+```
+to generate a .exe file.
+
+Now, in explorer, go to the `dist` folder and copy the .exe file to `C:\Users\<your_user>\AppData\Local\Programs\Python\<python_version>\Scripts` (Substitute the text in `<>` to its respective folders).
 ### Linux
 Clone the project's repository and give the script execution permissions.
 ```
@@ -28,10 +48,11 @@ $ sudo cp lqual /usr/local/bin
 ```
 lqual [-h] -m MULTIPLIER -q QUALITY [-l] input [output]
 
--h, --help            show this help message and exit
+-h, --help            show this help message and exit.
 -m MULTIPLIER, --multiplier MULTIPLIER
-                      the number that is going to be multiplied with the original resolution. (higher = lower resolution)
+                      the number that is going to be multiplied with the original resolution (higher = lower resolution).
 -q QUALITY, --quality QUALITY
-                      the image's jpeg quality value. (lower = lower quality)
+                      the image's jpeg quality value (lower = lower quality).
 -l, --low-res         use this if you don't want the image to be resized back to its original size.
 ```
+If `output` is not specified the image will be save in the current directory with the name `output.jpg`.
