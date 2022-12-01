@@ -9,7 +9,8 @@ Lower a image's quality.
 
 ### Dependencies:
 
-* [Pillow](https://pypi.org/project/Pillow/)
+* [Pillow](https://pypi.org/project/Pillow/) for manipulating the image.
+* [pyinstaller](https://pypi.org/project/pyinstaller/) optionally for generating a .exe file for Windows.
 
 ### Installation:
 ### Windows
