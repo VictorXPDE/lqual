@@ -10,26 +10,26 @@ def main():
 
     parser.add_argument("-m", "--multiplier",
                         help="the number that is going to be \
-                        multiplied with the original resolution (higher = lower resolution)",
+                        multiplied with the original resolution. (higher = lower resolution)",
                         required=True,
                         type=int)
 
     parser.add_argument("-q", "--quality",
-                        help="the image's jpeg quality value (lower = lower quality)",
+                        help="the image's jpeg quality value. (lower = lower quality)",
                         required=True,
                         type=int)
 
     parser.add_argument("-l", "--low-res",
                         help="use this if you don't want the image to be \
-                        resized back to its original size",
+                        resized back to its original size.",
                         action="store_true")
 
     parser.add_argument("input",
-                        help="input file",
+                        help="input file.",
                         type=str)
 
     parser.add_argument("output",
-                        help="output file",
+                        help="output file.",
                         nargs="?",
                         type=str)
 
@@ -61,6 +61,10 @@ def main():
         else:
             return "/"
     path_bar_str = path_bar()
+
+    # Converting image to RGB mode if it is in RGBA or P mode.
+    if img.mode in ["RGBA", "P"]:
+        img = img.convert("RGB")
 
     # Saving the image with low quality, lowering the resolution
     # and then resizing it back to its original resolution while
